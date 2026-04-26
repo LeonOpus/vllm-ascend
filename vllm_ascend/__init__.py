@@ -29,9 +29,13 @@ def register_connector():
 
 
 def register_model_loader():
+    from vllm_ascend.lora.fused_moe_lora_patch import (
+        patch_fused_moe_lora_for_ascend,
+    )
     from .model_loader.netloader import register_netloader
     from .model_loader.rfork import register_rforkloader
 
+    patch_fused_moe_lora_for_ascend()
     register_netloader()
     register_rforkloader()
 
